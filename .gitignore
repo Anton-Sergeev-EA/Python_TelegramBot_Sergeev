@@ -1,0 +1,84 @@
+# Файл с секретными данными
+secrets.py
+
+# Файл базы данных SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# Файлы базы данных PostgreSQL (если будут использоваться)
+*.dump
+*.backup
+
+# Кэш Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Распределенные файлы и виртуальные среды
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Логи
+*.log
+
+# Файлы операционных систем
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Файлы редакторов
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Временные файлы
+*.tmp
+*.temp
+
+# Резервные копии
+*.bak
+*.backup
+
+# Файлы пакетов Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+
+# Установщик pip
+pip-delete-this-directory.txt
+
+# Файлы тестирования
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Файлы Jupyter Notebook
+.ipynb_checkpoints
+
+# Файлы миграций (если будут)
+migrations/
