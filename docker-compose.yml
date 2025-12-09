@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: calendar_bot
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  bot:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/calendar_bot
+      BOT_TOKEN: ${BOT_TOKEN}
+    volumes:
+      - ./bot:/app/bot
+    command: python -m bot.main
+
+  django:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/calendar_bot
+      DJANGO_SETTINGS_MODULE: calendar_project.settings
+      PYTHONPATH: /app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./django_app:/app/django_app
+    # Вариант 1: Для разработки (с авто-перезагрузкой).
+    command: python manage.py runserver 0.0.0.0:8000
+    # Вариант 2: Для продакшена (через gunicorn)
+    # command: gunicorn --bind 0.0.0.0:8000 calendar_project.wsgi:application.
+
+volumes:
+  postgres_data:
